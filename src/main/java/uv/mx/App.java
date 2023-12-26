@@ -1,71 +1,58 @@
 package uv.mx;
 
-import static spark.Spark.*;
-import java.util.HashMap;
+import static spark.Spark.before;
+import static spark.Spark.delete;
+import static spark.Spark.get;
+import static spark.Spark.path;
+import static spark.Spark.port;
+import static spark.Spark.post;
+import static spark.Spark.put;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import java.util.UUID;
 /**
- * Hello world!
+ * A simple api for web
  *
  */
 public class App 
 {
-    static HashMap<String,Cliente> usuarios = new HashMap<>();
     static Gson gson = new Gson();
     public static void main( String[] args )
     {
-        port(getHerokuAssignedPort());
-        get("/usuario", (req,res)->{
-            res.type("application/json");
-            // return gson.toJson(usuarios.values());
-            return gson.toJson(DAO.getAllUsuarios());
-        });
-        get("/usuario/byId", (req,res)->{
-            String id = req.queryParams("id");
-            res.type("application/json");
-            // return gson.toJson(usuarios.values());
-            return gson.toJson(DAO.GetUsuariosFromId(id));
-        });
-        post("/usuario", (req,res)->{
-            Cliente user = gson.fromJson(req.body(), Cliente.class);
-            String id = UUID.randomUUID().toString();
-            user.setId(id);
-            usuarios.put(id, user);
-            DAO.createUsuario(user);
-            // System.out.println("i:"+user.getId());
-            // res.type("application/json");
-            res.type("application/json");
-            res.status(200);
-            return gson.toJson(id);
+        port(getAssignedPort());
 
-         });
+        // get("/clientes", ClienteApi.mostrar);
+        // get("/clientes/byId", ClienteApi.buscarPorId);
+        // post("/clientes", ClienteApi.agregar);
+        // delete("/clientes/:id", ClienteApi.eliminar);
+        // patch("/clientes", ClienteApi.modificar);
 
-         delete("/usuario/:id", (req, res) -> {
-            // String id = req.queryParams("id");
-            String id = req.params(":id");
-            // String id = gson.fromJson(req.body(), String.class);
-            Cliente u = DAO.deleteUsuario(id);
-            res.type("application/json");
-            if (u!=null) {
-                res.status(200);
-                return gson.toJson(u);                
-            }else{
-                res.status(404);
-                JsonObject r = new JsonObject();
-                r.addProperty("error", "Error al eliminar el usuario");
-                return r;
-            }
-            // return gson.toJson(DAO.GetUsuariosFromId(id));
-         });
-         patch("/usuario", (req, res) -> {
-            Cliente user = gson.fromJson(req.body(), Cliente.class);
-            res.type("application/json");
-            return gson.toJson( DAO.modifyUsuario(user));
-         });
+        path("/api", () -> {
+            before("/*", (q, a) -> System.out.println("Received api call"));
+            path("/clientes", () -> {
+                get("/get",        ClienteApi.mostrar);
+                get("/getbyId",    ClienteApi.buscarPorId);
+                post("/add",       ClienteApi.agregar);
+                put("/change",     ClienteApi.modificar);
+                delete("/remove/:id",  ClienteApi.eliminar);
+            });
+            path("/owners", () -> {
+                get("/get",        DueñoApi.mostrar);
+                get("/getbyId",    DueñoApi.buscarPorId);
+                post("/add",       DueñoApi.agregar);
+                put("/change",     DueñoApi.modificar);
+                delete("/remove/:id",  DueñoApi.eliminar);
+            });
+            path("/animales", () -> {
+                get("/get",        AnimalApi.mostrar);
+                post("/add",       AnimalApi.agregar);
+                get("/getbyId",    AnimalApi.buscarPorId);
+                put("/change",     AnimalApi.modificar);
+                delete("/remove",  AnimalApi.eliminar);
+            });
+        });
+
     }
-    static int getHerokuAssignedPort() {
+    static int getAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
