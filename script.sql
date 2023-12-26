@@ -6,6 +6,7 @@ create table animal (
 					id_animal varchar(255) primary key,
                     especie varchar(255) not null,
                     nombre varchar(255),
+                    motivo varchar(255),
                     id_dueño varchar(255),
                     foreign key (id_dueño) references dueño(id_dueño)
                     );

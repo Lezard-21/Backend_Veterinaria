@@ -3,15 +3,16 @@ public class Animal {
     private String id;
     private String especie;
     private String nombre;
+    private String motivo;
     private String id_Dueño;
 
-    public Animal(String id, String especie, String nombre, String id_Dueño) {
+    public Animal(String id, String especie, String nombre,String motivo, String id_Dueño) {
         this.id = id;
         this.especie = especie;
         this.nombre = nombre;
+        this.motivo = motivo;
         this.id_Dueño = id_Dueño;
-    }
-    
+    }  
     public String getId() {
         return id;
     }
@@ -35,6 +36,12 @@ public class Animal {
     }
     public void setId_Dueño(String id_Dueño) {
         this.id_Dueño = id_Dueño;
+    }
+    public String getMotivo() {
+        return motivo;
+    }
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
     
 }

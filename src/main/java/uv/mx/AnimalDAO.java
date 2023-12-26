@@ -19,7 +19,7 @@ public class AnimalDAO {
             preparedStatement = conn.prepareStatement(query);
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                Animal p = new Animal(rs.getString("id_animal"),rs.getString("especie"), rs.getString("nombre"), rs.getString("id_dueño"));
+                Animal p = new Animal(rs.getString("id_animal"),rs.getString("especie"), rs.getString("nombre"),rs.getString("motivo"), rs.getString("id_dueño"));
                 resultado.add(p);
             }
         } catch (Exception e) {
@@ -41,12 +41,13 @@ public class AnimalDAO {
         Connection conn = Conexion.getConnection();
         String msj = "";
         try {
-            String query = "INSERT INTO Animal (id_animal, especie, nombre, id_dueño) values (?,?,?,?)";
+            String query = "INSERT INTO animal (id_animal, especie, nombre, motivo, id_dueño) values (?,?,?,?,?)";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1, p.getId());           
-            preparedStatement.setString(1, p.getEspecie());
-            preparedStatement.setString(2, p.getNombre());
-            preparedStatement.setString(3, p.getId_Dueño());
+            preparedStatement.setString(2, p.getEspecie());
+            preparedStatement.setString(3, p.getNombre());
+            preparedStatement.setString(4, p.getMotivo());
+            preparedStatement.setString(5, p.getId_Dueño());
             if (preparedStatement.executeUpdate() > 0)
                 msj = "Animal agregado";
             else
@@ -73,12 +74,13 @@ public class AnimalDAO {
         conn = Conexion.getConnection();
     
         try {
-            String sql = "UPDATE Animal SET especie = ?, nombre = ?, id_dueño = ? WHERE id_animal = ?";
+            String sql = "UPDATE Animal SET especie = ?, nombre = ?,motivo = ?, id_dueño = ? WHERE id_animal = ?";
             stm = conn.prepareStatement(sql);
             stm.setString(1, u.getEspecie());
-            stm.setString(1, u.getNombre());
-            stm.setString(1, u.getId_Dueño());
-            stm.setString(3, u.getId());
+            stm.setString(2, u.getNombre());
+            stm.setString(3, u.getMotivo());
+            stm.setString(4, u.getId_Dueño());
+            stm.setString(5, u.getId());
             int rowsUpdated = stm.executeUpdate();
     
             if (rowsUpdated > 0) {
@@ -142,7 +144,7 @@ public class AnimalDAO {
             preparedStatement.setString(1, id); 
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                resultado = new Animal(rs.getString("id_animal"), rs.getString("especie"), rs.getString("nombre"), rs.getString("id_dueño"));
+                resultado = new Animal(rs.getString("id_animal"), rs.getString("especie"), rs.getString("nombre"),rs.getString("motivo"), rs.getString("id_dueño"));
             }
         } catch (Exception e) {
             System.out.println(e);
