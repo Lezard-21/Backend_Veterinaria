@@ -15,7 +15,7 @@ El cliente es la cuenta con la que se autentica
     curl -X GET localhost:4567/api/clientes/getbyId?id=[id del cliente]
 
 ##### agregar un cliente
-    curl -X POST -d {nombre:" ",password=" "} localhost:4567/api/clientes/add
+    curl -X POST -d {nombre:" ",password:" "} localhost:4567/api/clientes/add
 
 ##### Modificar cliente
     curl -X PUT -d {id:"[id del cliente]",nombre:" ",password=" "} localhost:4567/api/clientes/modify
@@ -33,10 +33,10 @@ El cliente es la cuenta con la que se autentica
     curl -X GET localhost:4567/api/owners/getbyId?id=[id del dueño]
 
 ##### agregar dueño
-    curl -X POST -d {nombre:" ",telefono=" "} localhost:4567/api/clientes/add
+    curl -X POST -d {nombre:" ",telefono:" "} localhost:4567/api/clientes/add
 
 ##### modificar dueño
-    curl -X PUT -d {id:"[id del dueño]",nombre:" ",telefono=" "} localhost:4567/api/owners/change
+    curl -X PUT -d {id:"[id del dueño]",nombre:" ",telefono:" "} localhost:4567/api/owners/change
 
 ##### Eliminar dueño
     curl -X DELETE localhost:4567/api/owners/remove/ [id del dueño]
@@ -52,10 +52,10 @@ Los animales son las mascotas
     curl -X GET localhost:4567/api/animales/getbyId?id= [el id del animal]
 
 ##### agregar animal
-    curl -X POST -d {especie="",nombre:"",id_dueño="[id del dueño]"} localhost:4567/api/animales/add
+    curl -X POST -d {especie="",nombre:"",id_dueño:"[id del dueño]"} localhost:4567/api/animales/add
 
 ##### modificar animal
-    curl -X PUT -d {id="[id del animal]",especie="",nombre:"",id_dueño="[id del dueño]"} localhost:4567/api/animales/change
+    curl -X PUT -d {id:"[id del animal]",especie:"",nombre:"",id_dueño:"[id del dueño]"} localhost:4567/api/animales/change
 
 ##### Eliminar animal
     curl -X DELETE localhost:4567/api/animales/remove/ [el id del animal]
