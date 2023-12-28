@@ -59,7 +59,9 @@ public class ClienteApi {
     };
 
     public static Route auth = (Request req, Response res) -> {
+        System.out.println(req.body());
         Cliente user = gson.fromJson(req.body(), Cliente.class);  
+        System.out.println(user);
         res.type("application/json");
         Cliente u = ClienteDAO.auth(user);
         if(u!=null){
