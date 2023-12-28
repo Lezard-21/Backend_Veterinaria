@@ -54,6 +54,18 @@ public class ClienteApi {
     public static Route modificar = (Request req, Response res) -> {
         Cliente user = gson.fromJson(req.body(), Cliente.class);    
         res.type("application/json");
+        res.status(200);
         return gson.toJson( ClienteDAO.modifyUsuario(user));
+    };
+
+    public static Route auth = (Request req, Response res) -> {
+        Cliente user = gson.fromJson(req.body(), Cliente.class);  
+        res.type("application/json");
+        Cliente u = ClienteDAO.auth(user);
+        if(u!=null){
+            res.status(200);
+            return true;
+        }
+        return false;
     };
 }

@@ -12,6 +12,11 @@ public class Cliente {
         this.password = password;
     }
 
+    public Cliente(String nombre, String password){
+        this.nombre = nombre;
+        this.password = password;
+    }
+
     public void setNombre(String nombre){
         this.nombre = nombre;
     }

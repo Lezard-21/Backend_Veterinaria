@@ -154,4 +154,32 @@ public class ClienteDAO {
         }
         return resultado;
     }
+
+    public static Cliente auth(Cliente cliente){
+        ResultSet rs = null;
+        Cliente resultado = null;
+        PreparedStatement preparedStatement = null;
+        Connection conn = Conexion.getConnection();
+        String query = "SELECT * from cliente where nombre=? and contraseña=?";
+        try {
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, cliente.getNombre());
+            preparedStatement.setString(2, cliente.getPassword()); 
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                resultado = new Cliente(rs.getString("id_cliente"), rs.getString("nombre"), rs.getString("contraseña"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                rs.close();
+                conn.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return resultado;
+    }
 }

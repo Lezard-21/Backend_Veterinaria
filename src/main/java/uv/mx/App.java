@@ -43,6 +43,7 @@ public class App
         path("/api", () -> {
             before("/*", (q, a) -> System.out.println("Received api call"));
             path("/clientes", () -> {
+                get("/auth",      ClienteApi.auth);
                 get("/get",        ClienteApi.mostrar);
                 get("/getbyId",    ClienteApi.buscarPorId);
                 post("/add",       ClienteApi.agregar);
