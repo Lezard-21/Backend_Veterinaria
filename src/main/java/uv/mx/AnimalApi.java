@@ -34,7 +34,7 @@ public class AnimalApi {
     };
 
     public static Route eliminar = (Request req, Response res) -> {
-        // String id = req.queryParams("id");
+        //String id = req.queryParams("id");
         String id = req.params(":id");
         // String id = gson.fromJson(req.body(), String.class);
         Animal u = AnimalDAO.deleteAnimal(id);

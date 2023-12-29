@@ -62,7 +62,7 @@ public class App
                 post("/add",       AnimalApi.agregar);
                 get("/getbyId",    AnimalApi.buscarPorId);
                 put("/change",     AnimalApi.modificar);
-                delete("/remove:id",  AnimalApi.eliminar);
+                delete("/remove/:id",  AnimalApi.eliminar);
             });
         });
 
