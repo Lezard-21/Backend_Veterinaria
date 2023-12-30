@@ -4,8 +4,7 @@ Esta es una aplicación creada con maven, con el proposito de crear un backend d
 
 ## Curl
 
-#### clientes
-
+### clientes
 El cliente es la cuenta con la que se autentica
 
 ##### obtener todos los clientes
@@ -18,12 +17,12 @@ El cliente es la cuenta con la que se autentica
     curl -X POST -d {nombre:" ",password:" "} localhost:4567/api/clientes/add
 
 ##### Modificar cliente
-    curl -X PUT -d {id:"[id del cliente]",nombre:" ",password=" "} localhost:4567/api/clientes/modify
+    curl -X PUT -d {id:"[id del cliente]",nombre:" ",password:" "} localhost:4567/api/clientes/modify
 
 ##### Eliminar cliente
     curl -X DELETE localhost:4567/api/clientes/remove/[id del cliente]
 
-#### dueños 
+### dueños 
     Se utilizo la palabra owners debido a que spark no reconoce la palabra dueños.
 
 ##### obtener todos los dueños
@@ -41,8 +40,7 @@ El cliente es la cuenta con la que se autentica
 ##### Eliminar dueño
     curl -X DELETE localhost:4567/api/owners/remove/ [id del dueño]
 
-#### Animal 
-
+### Animal 
 Los animales son las mascotas
 
 ##### obtener todos los animales
@@ -52,7 +50,7 @@ Los animales son las mascotas
     curl -X GET localhost:4567/api/animales/getbyId?id= [el id del animal]
 
 ##### agregar animal
-    curl -X POST -d {especie="",nombre:"",id_dueño:"[id del dueño]"} localhost:4567/api/animales/add
+    curl -X POST -d {especie:"",nombre:"",id_dueño:"[id del dueño]"} localhost:4567/api/animales/add
 
 ##### modificar animal
     curl -X PUT -d {id:"[id del animal]",especie:"",nombre:"",id_dueño:"[id del dueño]"} localhost:4567/api/animales/change
