@@ -1,6 +1,6 @@
 # Backend_Veterinaria :smiley_cat: :rage2: :skull:
 
-Esta es una aplicación creada con maven, con el proposito de crear un backend de una pagina web, a continuacion se muestran las maneras para mandar las llamadas a la api mediante curl.
+Esta es una aplicación creada con maven, con el propósito de crear un backend de una página web, a continuación, se muestran las maneras para mandar las llamadas al api mediante curl.
 
 ## Curl
 
